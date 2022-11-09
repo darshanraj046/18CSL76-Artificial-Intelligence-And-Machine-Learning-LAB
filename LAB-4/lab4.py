@@ -16,7 +16,7 @@ def find_entropy(df):
 
 def find_entropy_attribute(df,attribute):
     Class = df.keys()[-1] # To make the code generic, changing target variable class name 
-    target_variables = df[Class].unique() #This gives all 'Yes' and 'No'
+    target_variables = df[Class].unique() # This gives all 'Yes' and 'No'
     variables = df[attribute].unique()
     entropy2 = 0
     for variable in variables:
