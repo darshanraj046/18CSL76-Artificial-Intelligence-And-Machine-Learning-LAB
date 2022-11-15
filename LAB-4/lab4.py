@@ -55,7 +55,7 @@ def buildTree(df,tree=None):
     # In this we check if the subset is pure and stops if it is pure.
     for value in attValue:
         subtable = get_subtable(df,node,value)
-        clValue,counts = np.unique(subtable['play'], return_counts=True) 
+        clValue,counts = np.unique(subtable['Play'], return_counts=True) 
         if len(counts)==1: # Checking purity of subset
             tree[node][value] = clValue[0] 
         else:
