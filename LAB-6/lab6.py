@@ -3,7 +3,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 # Load Data from CSV
-data = pd.read_csv('tennis.csv')
+data = pd.read_csv('/Users/darshanr/Documents/18CSL76-Artificial-Intelligence-And-Machine-Learning-LAB/LAB-4/tennis.csv')
 print("The first 5 Values of data is :\n", data.head())
 
 # obtain training attributes

@@ -26,15 +26,15 @@ colormap=np.array(['red','lime','blue'])
 # Plotting without classification
 plt.subplot(1,3,1) 
 plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[y.Targets],s=20) 
-plt.title('Before Classification')
+plt.title('Before Clustering')
 
 # Plotting with K-Means Clustering
 plt.subplot(1,3,2)
 model = KMeans(n_clusters=3)
 model.fit(X) 
 predY = np.choose(model.labels_,[0,1,2]).astype(np.int64) 
-plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[predY],s=40) 
-plt.title('KMeans')
+plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[predY],s=20) 
+plt.title('KMeans Clustering')
 
 # Plotting with EM using GMM Classification
 scaler=preprocessing.StandardScaler() 
@@ -46,5 +46,6 @@ gmm.fit(xs)
 
 y_cluster_gmm=gmm.predict(xs) 
 plt.subplot(1,3,3)
-plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[y_cluster_gmm],s=40) 
-plt.title('GMM Classification')
+plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[y_cluster_gmm],s=20) 
+plt.title('GMM with EM Clustering')
+plt.show();
