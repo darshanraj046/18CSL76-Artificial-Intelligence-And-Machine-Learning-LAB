@@ -1,6 +1,6 @@
 # 18CSL76 Artificial Intelligence and Machine Learning Laboratory
 
-### This repo contains the code for 18CSMP76 - Artificial Intelligence and Machine Learning Laboratory
+### This repo contains the code for 18CSL76 - Artificial Intelligence and Machine Learning Laboratory
 
 1. Implement A* Search algorithm.
 2. Implement AO* Search algorithm.
