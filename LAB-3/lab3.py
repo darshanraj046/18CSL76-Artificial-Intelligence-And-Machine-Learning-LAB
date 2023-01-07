@@ -9,7 +9,7 @@ for i in data:
     target.append(i[-1])
 
 specific_h = ['O']*len(concepts[0])
-general_h = [['?' for i in range(len(specific_h))] for i in range(len(specific_h))]
+general_h = [['?' for _ in range(len(specific_h))] for _ in range(len(specific_h))]
 
 for i, instance in enumerate(concepts):
     if target[i] == "Yes":
@@ -21,15 +21,10 @@ for i, instance in enumerate(concepts):
                 general_h[x][x] = '?'
     if target[i] == "No":
         for x in range(len(specific_h)):
-            if instance[x] != specific_h[x]:
-                general_h[x][x] = specific_h[x]
-            else:
-                general_h[x][x] = '?'
-
+            general_h[x][x] = specific_h[x] if instance[x] != specific_h[x] else '?'
 indices = [i for i, val in enumerate(general_h) if val == ['?', '?', '?', '?', '?', '?']]
 
-
-for i in indices:
+for _ in indices:
     general_h.remove(['?', '?', '?', '?', '?', '?'])
 
 print("Final Specific : ", specific_h, sep = '\n')
