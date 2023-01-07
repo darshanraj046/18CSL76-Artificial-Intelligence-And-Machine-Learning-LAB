@@ -5,9 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import metrics
 import matplotlib.pyplot as plt
 
-assigned_names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'Class']
-
-dataset = pd.read_csv("/Users/darshanr/Documents/18CSL76-Artificial-Intelligence-And-Machine-Learning-LAB/LAB-8/iris2.csv", names=assigned_names)
+dataset = pd.read_csv("/Users/darshanr/Documents/18CSL76-Artificial-Intelligence-And-Machine-Learning-LAB/LAB-8/iris2.csv", names=['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'Class'])
 X = dataset.iloc[:, :-1]  
 y = dataset.iloc[:, -1]
 print(X.head())

@@ -37,9 +37,8 @@ SortIndex = X[:,1].argsort(0)
 xsort = X[SortIndex][:,0]
 
 fig = plt.figure()
-ax = fig.add_subplot(1,1,1)
-ax.scatter(bill,tip, color='yellow')
-ax.plot(xsort[:,1],ypred[SortIndex], color = 'black', linewidth=2)
+plt.scatter(bill,tip, color='yellow')
+plt.plot(xsort[:,1],ypred[SortIndex], color = 'black', linewidth=2)
 plt.xlabel('Total bill')
 plt.ylabel('Tip')
 plt.show();
