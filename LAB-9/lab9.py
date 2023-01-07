@@ -36,7 +36,6 @@ ypred = localWeightRegression(X,mtip,0.5)
 SortIndex = X[:,1].argsort(0)
 xsort = X[SortIndex][:,0]
 
-fig = plt.figure()
 plt.scatter(bill,tip, color='yellow')
 plt.plot(xsort[:,1],ypred[SortIndex], color = 'black', linewidth=2)
 plt.xlabel('Total bill')
