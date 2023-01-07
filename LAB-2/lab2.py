@@ -33,8 +33,7 @@ class Graph:
 
     def computeMinimumCostChildNodes(self, v):
         minimumCost=0
-        costToChildNodeListDict={}
-        costToChildNodeListDict[minimumCost]=[]
+        costToChildNodeListDict = {minimumCost: []}
         flag=True
         for nodeInfoTupleList in self.getNeighbors(v): 
             cost=0
@@ -46,10 +45,9 @@ class Graph:
                 minimumCost=cost
                 costToChildNodeListDict[minimumCost]=nodeList 
                 flag=False
-            else: 
-                if minimumCost>cost:
-                    minimumCost=cost
-                    costToChildNodeListDict[minimumCost]=nodeList 
+            elif minimumCost>cost:
+                minimumCost=cost
+                costToChildNodeListDict[minimumCost]=nodeList
         return minimumCost, costToChildNodeListDict[minimumCost]
 
     def aoStar(self, v, backTracking): 
@@ -58,24 +56,27 @@ class Graph:
         print("PROCESSING NODE :", v)
         print("-----------------------------------------------------------------------------------------")
         if self.getStatus(v) >= 0: 
-            minimumCost, childNodeList = self.computeMinimumCostChildNodes(v)
-            print(minimumCost, childNodeList)
-            self.setHeuristicNodeValue(v, minimumCost)
-            self.setStatus(v,len(childNodeList))
-            solved=True
-            for childNode in childNodeList:
-                self.parent[childNode]=v
-                if self.getStatus(childNode)!=-1:
-                    solved=solved & False
-            if solved==True: 
-                self.setStatus(v,-1)
-                self.solutionGraph[v]=childNodeList 
-            if v!=self.start: 
-                self.aoStar(self.parent[v], True) 
-            if backTracking==False: 
-                for childNode in childNodeList: 
-                    self.setStatus(childNode,0) 
-                    self.aoStar(childNode, False)
+            self.check(v, backTracking)
+
+    def check(self, v, backTracking):
+        minimumCost, childNodeList = self.computeMinimumCostChildNodes(v)
+        print(minimumCost, childNodeList)
+        self.setHeuristicNodeValue(v, minimumCost)
+        self.setStatus(v,len(childNodeList))
+        solved=True
+        for childNode in childNodeList:
+            self.parent[childNode]=v
+            if self.getStatus(childNode)!=-1:
+                solved=solved & False
+        if solved==True: 
+            self.setStatus(v,-1)
+            self.solutionGraph[v]=childNodeList
+        if v!=self.start: 
+            self.aoStar(self.parent[v], True)
+        if backTracking==False: 
+            for childNode in childNodeList: 
+                self.setStatus(childNode,0) 
+                self.aoStar(childNode, False)
                     
 print ("Graph")
 
