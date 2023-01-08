@@ -22,9 +22,7 @@ def find_entropy_attribute(df, attribute):
     for variable in variables:
         entropy = 0
         for target_variable in target_variables:
-            num = len(
-                df[attribute][df[attribute] == variable][df[Class] == target_variable]
-            )
+            num = len(df[attribute][df[attribute] == variable][df[Class] == target_variable])
             den = len(df[attribute][df[attribute] == variable])
             fraction = num / (den + eps)
             entropy += -fraction * log(fraction + eps)
@@ -35,8 +33,7 @@ def find_entropy_attribute(df, attribute):
 def find_winner(df):
     IG = [
         find_entropy(df) - find_entropy_attribute(df, key)
-        for key in df.keys()[:-1]
-    ]
+        for key in df.keys()[:-1]]
     return df.keys()[:-1][np.argmax(IG)]
 
 def get_subtable(df, node, value):
