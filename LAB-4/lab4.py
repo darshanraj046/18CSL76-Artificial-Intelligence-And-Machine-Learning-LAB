@@ -51,7 +51,7 @@ def buildTree(df, tree=None):
     return tree
 
 df = pd.read_csv("/Users/darshanr/Documents/18CSL76-Artificial-Intelligence-And-Machine-Learning-LAB/LAB-4/tennis.csv")
-print("\n Given Play Tennis Data Set:\n\n", df)
+print("\nGiven Play Tennis Data Set:\n\n", df)
 tree = buildTree(df)
 pprint.pprint(tree)
 
