@@ -1,44 +1,32 @@
+import heapq
+
 def aStarAlgo(start_node, stop_node):
-    open_set = set(start_node)
+    open_set = [(0, start_node)]
     closed_set = set()
     g = {start_node: 0}
     parents = {start_node: start_node}
     while open_set:
-        n = None
-        for v in open_set:
-            if n is None or g[v] + heuristic(v) < g[n] + heuristic(n):
-                n = v
-        if n != stop_node and Graph_nodes[n] != None:
-            for m, weight in get_neighbors(n):
-                if m not in open_set and m not in closed_set:
-                    open_set.add(m)
-                    parents[m] = n
-                    g[m] = g[n] + weight
-                elif g[m] > g[n] + weight:
-                    g[m] = g[n] + weight
-                    parents[m] = n
-                    if m in closed_set:
-                        closed_set.remove(m)
-                        open_set.add(m)
-        if n is None:
-            print('Path does not exist!')
-            return None
+        f, n = heapq.heappop(open_set)
         if n == stop_node:
             return check(parents, n, start_node)
-        open_set.remove(n)
         closed_set.add(n)
-    print('Path does not exist!')
+        for m, weight in get_neighbors(n):
+            if m in closed_set:
+                continue
+            if m not in g or g[m] > g[n] + weight:
+                g[m] = g[n] + weight
+                parents[m] = n
+                heapq.heappush(open_set, (g[m] + heuristic(m), m))
     return None
 
 def check(parents, n, start_node):
     path = []
-    while parents[n] != n:
+    while n != start_node:
         path.append(n)
         n = parents[n]
     path.append(start_node)
-    path.reverse()
-    print(f'Path found: {path}')
-    return path
+    print(f'Path found: {path[::-1]}')
+    return path[::-1]
 
 def get_neighbors(v):
     return Graph_nodes[v] if v in Graph_nodes else None
